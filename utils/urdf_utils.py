@@ -42,7 +42,7 @@ def load_asset_files_ycb(asset_root,folder_name='ycb_real_inertia'):
     asset_files = {}
 
     for root, dirs, files in os.walk(os.path.join(asset_root,folder_name)):
-
+        print(root,dirs,files)
         for file in files:
             if file.endswith(".urdf"):
                 obj_name = file.split('.')[0]

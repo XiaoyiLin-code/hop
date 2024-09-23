@@ -36,6 +36,7 @@ class RobotDataset(Dataset):
 
         assert len(self.episodes_dir) > 0, f"No episodes found in the directory {root}"
         # load all the episodes
+        print(self.episodes_dir)
         for episode in self.episodes_dir:
             self.load_episode_fnames(episode)
 

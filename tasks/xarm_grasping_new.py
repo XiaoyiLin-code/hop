@@ -664,6 +664,7 @@ class AllegroXarmGraspingNew(VecTask):
             object_asset_fname = os.path.basename(object_asset_file['urdf'])
             object_asset_ = self.gym.load_asset(self.sim, object_asset_dir, object_asset_fname, object_asset_options)
             object_assets.append(object_asset_)
+        
         object_rb_count = self.gym.get_asset_rigid_body_count(
             object_assets[0]
         )  # assuming all of them have the same rb count
@@ -797,7 +798,7 @@ class AllegroXarmGraspingNew(VecTask):
         object_assets = []
         object_meshes = []
         object_names = []
-
+        print(self.asset_files_dict)
         for k,v in self.asset_files_dict.items():
             object_asset_options = gymapi.AssetOptions()
             object_asset_options.vhacd_params = gymapi.VhacdParams()
@@ -834,6 +835,7 @@ class AllegroXarmGraspingNew(VecTask):
             object_names.append(k)
         
         #assuming this to be same for all of them
+        print(object_assets)
         object_rb_count = self.gym.get_asset_rigid_body_count(object_assets[0])  
         object_shape_count = self.gym.get_asset_rigid_shape_count(object_assets[0])
         max_agg_bodies += object_rb_count

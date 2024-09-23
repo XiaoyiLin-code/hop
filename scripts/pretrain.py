@@ -9,7 +9,7 @@ from torch.optim import Adam, AdamW
 from algo.pretrained.trainer import RobotTrainer 
 import wandb 
 from algo.pretrained.robot_transformer_ar import RobotTransformerAR
-from algo.pretrained.policy_transformer import PolicyTransformer
+# from algo.pretrained.policy_transformer import PolicyTransformer
 from algo.pretrained.robot_dataset import RobotDataset , collate_fn
 import os 
 from datetime import datetime 
@@ -93,8 +93,9 @@ def main(config: DictConfig):
                                        entity=config.wandb_entity, config=omegaconf_to_dict(config))
         else:
             wandb_logger=None
-
+        print("Before load")
         train_dataset = RobotDataset(cfg=config, root=config.pretrain.training.root_dir)
+        print("After load")
         val_dataset = RobotDataset(cfg=config, root=config.pretrain.validation.root_dir)
         
         max_ep_len = max(train_dataset.max_ep_len, val_dataset.max_ep_len)

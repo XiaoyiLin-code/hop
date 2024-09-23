@@ -2,7 +2,7 @@
 
 DATADIR=$1
 CMD="python scripts/pretrain.py num_gpus=1 headless=True \
-    track_pose=False get_target_reference=False num_envs=25 \
+    track_pose=False get_target_reference=False num_envs=1 \
     pc_input=True pipeline=cuda rl_device=cuda:0 sim_device=cuda:0 \
     pretrain.training.root_dir=$DATADIR/train \
     pretrain.validation.root_dir=$DATADIR/val pretrain.wandb_activate=True \

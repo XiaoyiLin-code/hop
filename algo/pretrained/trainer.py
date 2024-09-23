@@ -492,10 +492,15 @@ class RobotTrainer(Trainer):
                 )
                 pc_preds = pred_dict['pc']
                 pc_dim = pc_preds.shape[2]
+  
             else:
-                action_preds, _ = self.model.forward(
+                pred_dict, _ = self.model.forward(
                     proprio, depth, timesteps=timesteps, attention_mask=attention_mask,
                 )
+            action_preds = pred_dict['action']
+            next_proprio = pred_dict['next_proprio']
+            next_proprio_dim = next_proprio.shape[2]
+
         else:
             action_preds, _ = self.model.forward(
                 proprio, object_pc, actions, timesteps, attention_mask=attention_mask,
@@ -561,9 +566,12 @@ class RobotTrainer(Trainer):
                     self.diagnostics['training/pc_error'] = loss_pc.detach().cpu().item()
         
         if self.full_autoregressive:
+            
             return_dict = {'action': loss_action.detach().cpu().item(),
-                           'next_proprio': loss_next_proprio.detach().cpu().item(),
+                           
                            'full': loss.detach().cpu().item()}
+            if self.use_proprio_loss:
+                return_dict['next_proprio'] = loss_next_proprio.detach().cpu().item(),
             if self.use_pc_loss and self.action_input:
                 return_dict['pc'] = loss_pc.detach().cpu().item()
             return return_dict
@@ -687,6 +695,9 @@ class RobotTrainerWithDepth(Trainer):
                 action_preds, _ = self.model.forward(
                     proprio, depth, timesteps=timesteps, attention_mask=attention_mask,
                 )
+            action_preds = pred_dict['action']
+            next_proprio = pred_dict['next_proprio']
+            next_proprio_dim = next_proprio.shape[2]
         else:
             action_preds, _ = self.model.forward(
                 proprio, object_pc, actions, timesteps, attention_mask=attention_mask,
@@ -777,9 +788,9 @@ class RobotTrainerWithDepth(Trainer):
                 action_preds, _ = self.model.forward(
                     proprio, depth, timesteps=timesteps, attention_mask=attention_mask,
                 )
-            # action_preds = pred_dict['action']
-            # next_proprio = pred_dict['next_proprio']
-            # next_proprio_dim = next_proprio.shape[2]
+            action_preds = pred_dict['action']
+            next_proprio = pred_dict['next_proprio']
+            next_proprio_dim = next_proprio.shape[2]
         else:
             action_preds, _ = self.model.forward(
                 proprio, depth, actions, timesteps, attention_mask=attention_mask,

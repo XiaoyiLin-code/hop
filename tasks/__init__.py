@@ -28,9 +28,9 @@
 
 
 
-from tasks.allegro_kuka_grasping import AllegroKukaGrasping
-from tasks.xarm_grasping_debug import AllegroXarmGraspingDebug
-from tasks.xarm_grasping import AllegroXarmGrasping 
+# from tasks.allegro_kuka_grasping import AllegroKukaGrasping
+# from tasks.xarm_grasping_debug import AllegroXarmGraspingDebug
+# from tasks.xarm_grasping import AllegroXarmGrasping 
 from tasks.xarm_grasping_new import AllegroXarmGraspingNew 
 from tasks.xarm_throwing import AllegroXarmThrowing
 from tasks.xarm_cabinet import AllegroXarmCabinet
@@ -39,9 +39,9 @@ from tasks.xarm_cabinet import AllegroXarmCabinet
 
 # Mappings from strings to environments
 isaacgym_task_map = {
-    "AllegroKuka" : AllegroKukaGrasping,
-    "AllegroXarmDebug": AllegroXarmGraspingDebug,
-    "AllegroXarm": AllegroXarmGrasping,
+    # "AllegroKuka" : AllegroKukaGrasping,
+    # "AllegroXarmDebug": AllegroXarmGraspingDebug,
+    # "AllegroXarm": AllegroXarmGrasping,
     "AllegroXarmNew": AllegroXarmGraspingNew,
     "AllegroXarmThrowing": AllegroXarmThrowing,
     "AllegroXarmCabinet": AllegroXarmCabinet
