@@ -8,40 +8,47 @@ For a brief overview, check out the project [webpage](https://hgaurav2k.github.i
 
 <img src='imgs/approach.png'>
 
-
 For any questions, please contact [Himanshu Gaurav Singh](https://hgaurav2k.github.io/).
-
 
 ## Setup
 
 * Create conda environment using `conda env create -f env.yml`
-* Install [IsaacGym](https://developer.nvidia.com/isaac-gym) in this environment. 
-* Download the [asset](https://drive.google.com/drive/folders/1BE3lg8k1kssGxojtL0OkQLscSAkbpNzS?usp=sharing) folder and put them in the root directory.  
+* Install [IsaacGym](https://developer.nvidia.com/isaac-gym) in this environment.
+* Download the [asset](https://drive.google.com/drive/folders/1BE3lg8k1kssGxojtL0OkQLscSAkbpNzS?usp=sharing) folder and put them in the root directory as root/assets/*.
+
+### System Path Setup
+
+Make sure to update the following system paths before running the code:
+
+```bash
+export LD_LIBRARY_PATH=/home/<your_user>/miniconda3/envs/rlgpu/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=/home/<your_user>/<your_project_directory>/hop:$PYTHONPATH
+```
+
+Replace `<your_user>` and `<your_project_directory>` with your actual system paths.
 
 ## Running the code
 
 ### Pretraining
 
-
-* Download the hand-object interaction dataset from [here](https://drive.google.com/file/d/12-xghxt0rf_0xDo5SMdrRBnNr7LWJ02Y/view?usp=drive_link). Extract using `tar -xf hoi_pretraining_data.tar.xz`. Put it under the root directory. 
+* Download the hand-object interaction dataset from [here](https://drive.google.com/file/d/12-xghxt0rf_0xDo5SMdrRBnNr7LWJ02Y/view?usp=drive_link). Extract using `tar -xf hoi_pretraining_data.tar.xz`. Put it under the root directory.
 * Run `bash scripts/pretrain.sh <DATADIR>`
 
-### Finetuning 
+### Finetuning
 
-
-* Download pretrained checkpoint from [here](https://drive.google.com/file/d/10zYrzPK8T-1zB8dqB5o2MfK_iF0Uda_f/view?usp=sharing). You can also use your own trained checkpoint. 
+* Download pretrained checkpoint from [here](https://drive.google.com/file/d/10zYrzPK8T-1zB8dqB5o2MfK_iF0Uda_f/view?usp=sharing). You can also use your own trained checkpoint.
 * For your choice of `task`, run `bash scripts/finetune/finetune_{task}.sh`.
-<!-- 
- -->
 
-
-### Visualising trained policies 
+### Visualising trained policies
 
 * Run `bash scripts/run_policy.sh <PATH_TO_POLICY>`.
 
+## Code Changes
 
-## Citation 
+All other code modifications have been pushed to the repository.
 
+## Citation
 
 ## Acknowledgment
+
 This work was supported by the DARPA Machine Common Sense program, the DARPA Transfer from Imprecise and Abstract Models to Autonomous Technologies (TIAMAT) program, and by the ONR MURI award N00014-21-1-2801. This work was also funded by ONR MURI N00014-22-1-2773. We thank Adhithya Iyer for assistance with teleoperation systems, Phillip Wu for setting-up the real robot, and Raven Huang, Jathushan Rajasegaran and Yutong Bai for helpful discussions.
